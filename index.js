@@ -1,79 +1,57 @@
-function generateSegments(splitNames) {
+const generateSegments = (splitNames) => {
     const gameName = "Game Name";
     const categoryName = "Category Name";
     const usesEmulatorTrueFalse = "False";
     const attemptCount = 0;
-    const splitName = "Split Name";
+    const splitTemplate = (splitName) => `
+        <Segment>
+            <Name>${splitName}</Name>
+            <Icon />
+            <SplitTimes>
+                <SplitTime name="Personal Best" />
+            </SplitTimes>
+            <BestSegmentTime />
+            <SegmentHistory />
+        </Segment>`;
   
-    const segmentTemplate = 
-    `\n            <Segment>
-                <Name>${splitName}</Name>
-                <Icon />
-                <SplitTimes>
-                    <SplitTime name="Personal Best" />
-                </SplitTimes>
-                <BestSegmentTime />
-                <SegmentHistory />
-            </Segment>`
-  
-    let segments = "";
+    const splitNamesArray = Array.isArray(splitNames) ? splitNames : splitNames.split(/[\n,]/);
+    const segments = splitNamesArray.filter(name => name.trim() !== "").map(name => splitTemplate(name.trim())).join("");
 
-    // Check if splitNames is already an array
-    if (Array.isArray(splitNames)) {
-    // If it is, join the array elements with newline
-    splitNames = splitNames.join("\n");
-    }
-
-    // Split the input by either newline or comma
-    splitNames.split(/[\n,]/).forEach((name) => {
-    if (name.trim() !== "") {
-        segments += segmentTemplate.replace(
-        /<Name>.*<\/Name>/,
-        `<Name>${name.trim()}</Name>`
-        );
-    }
-    });
-  
-    const splitFileTemplate = 
-    `<?xml version="1.0" encoding="UTF-8"?>
-    <Run version="1.7.0">
-        <GameIcon />
-        <GameName>${gameName}</GameName>
-        <CategoryName>${categoryName}</CategoryName>
-        <LayoutPath>
-        </LayoutPath>
-        <Metadata>
-            <Run id="" />
-            <Platform usesEmulator="${usesEmulatorTrueFalse}">
-            </Platform>
-            <Region>
-            </Region>
-            <Variables />
-        </Metadata>
-        <Offset>00:00:00</Offset>
-        <AttemptCount>${attemptCount}</AttemptCount>
-        <AttemptHistory />
-        <Segments>${segments}
-        </Segments>
-        <AutoSplitterSettings />
-    </Run>`;
+    const splitFileTemplate = `<?xml version="1.0" encoding="UTF-8"?>
+        <Run version="1.7.0">
+            <GameIcon />
+            <GameName>${gameName}</GameName>
+            <CategoryName>${categoryName}</CategoryName>
+            <LayoutPath></LayoutPath>
+            <Metadata>
+                <Run id="" />
+                <Platform usesEmulator="${usesEmulatorTrueFalse}"></Platform>
+                <Region></Region>
+                <Variables />
+            </Metadata>
+            <Offset>00:00:00</Offset>
+            <AttemptCount>${attemptCount}</AttemptCount>
+            <AttemptHistory />
+            <Segments>${segments}</Segments>
+            <AutoSplitterSettings />
+        </Run>`;
   
     return splitFileTemplate;
-  }
+  };
   
-  function generateSplitFile() {
+  const generateSplitFile = () => {
     const splitNamesInput = document.getElementById("splitNames");
     const splitNames = splitNamesInput.value.split(/[,|\n]/).map(name => name.trim());
     const splitFile = generateSegments(splitNames);
-  
     const formattedSplitFile = formatXml(splitFile);
-  
     const splitFileOutput = document.getElementById("splitFile");
     splitFileOutput.value = formattedSplitFile;
-  }
+  };
   
 function formatXml(xml) {
-    const PADDING = ' '.repeat(2); // set desired indent size here
+    // Remove all the newlines and then remove all the spaces between tags
+    xml = xml.replace(/(\r\n|\n|\r)/gm, " ").replace(/>\s+</g,'><');
+    const PADDING = ' '.repeat(4); // set desired indent size here
     const reg = /(>)(<)(\/*)/g;
     let pad = 0;
 
