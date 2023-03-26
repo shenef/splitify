@@ -44,6 +44,13 @@ const generateSegments = (splitNames) => {
   return splitFileTemplate;
 };
 
+/**
+ * Generates a split file based on a list of names entered into an
+ * HTML input element and displays the formatted split file on the HTML page.
+ *
+ * @returns {void}
+ */
+// eslint-disable-next-line no-unused-vars
 const generateSplitFile = () => {
   const splitNamesInput = document.getElementById('splitNames');
   const splitNames = splitNamesInput.value
