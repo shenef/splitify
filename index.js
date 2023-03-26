@@ -97,3 +97,18 @@ function formatXml(xml) {
       })
       .join('\r\n');
 }
+
+const downloadBtn = document.getElementById('downloadBtn');
+const splitFile = document.getElementById('splitFile');
+
+downloadBtn.addEventListener('click', () => {
+  const fileContents = splitFile.value;
+  const fileName = 'splitify.lss';
+
+  const blob = new Blob([fileContents], {type: 'text/plain'});
+
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.download = fileName;
+  link.click();
+});

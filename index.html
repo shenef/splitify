@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>splitify</title>
-</head>
-<body>
+    <style>
+      #splitNames,
+      #splitFile {
+        display: block;
+        overflow-y: auto;
+        resize: none;
+        max-width: 600px;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      #splitFile {
+        height: calc(100vh - 300px);
+        min-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
     <h1>splitify</h1>
     <p>Enter your split names separated by commas and/or newlines:</p>
     <textarea id="splitNames"></textarea>
-    <br>
+    <br />
     <button onclick="generateSplitFile()">Generate Split File</button>
-    <br><br>
-    <textarea id="splitFile"></textarea>
+    <br /><br />
+    <textarea id="splitFile" readonly></textarea>
+    <br />
+    <button id="downloadBtn">Download</button>
 
     <script src="index.js"></script>
   </body>
