@@ -20,61 +20,79 @@
       input {
         border: 1px solid hsl(348, 100%, 61%) !important;
       }
+      ::placeholder {
+        color: white !important;
+        opacity: 0.2;
+      }
     </style>
   </head>
   <body>
     <section class="section container">
       <div class="columns content">
-        <div class="column is-two-thirds-fullhd">
+        <div class="column container">
           <h1 class="title is-1 has-text-weight-bold has-text-danger">
             splitify
           </h1>
+
+          <h6 class="subtitle is-6 has-text-white">simplify making splits</h6>
+
           <div class="field">
-            <label class="label has-text-white">Game name:</label>
+            <label class="label has-text-white">Game</label>
             <div class="control">
               <input
                 class="input has-text-white has-background-grey-darker"
                 id="gameName"
                 type="text"
-                placeholder="Enter game name"
-                id="gameName"
+                placeholder="Boktai: The Sun is in Your Hand"
               />
             </div>
           </div>
+
           <div class="field">
-            <label class="label has-text-white">Category name:</label>
+            <label class="label has-text-white">Category</label>
             <div class="control">
               <input
                 class="input has-text-white has-background-grey-darker"
                 id="categoryName"
                 type="text"
-                placeholder="Enter category name"
-                id="categoryName"
+                placeholder="28 Dungeons"
               />
             </div>
           </div>
-          <p class="has-text-white">
-            Enter your split names separated by commas and/or newlines:
-          </p>
-          <textarea
-            class="textarea is-family-monospace has-background-grey-darker has-text-white"
-            placeholder="e.g. World 1, World 2"
-            id="splitNames"
-          ></textarea>
+
+          <div class="field">
+            <label class="label has-text-white">Splits</label>
+            <div class="control">
+              <textarea
+                class="textarea is-family-monospace has-background-grey-darker has-text-white"
+                placeholder="Fog Castle, Small Cave, Gate of the Dead, Ancient Forest"
+                id="splitNames"
+              ></textarea>
+              <p class="help is-danger">
+                Must be a list separated by commas and/or newlines
+              </p>
+            </div>
+          </div>
+
           <br />
+
           <button
             class="button is-danger is-outlined"
             onclick="generateSplitFile()"
           >
             Generate file
           </button>
+
           <br /><br />
+
           <textarea
             class="textarea is-family-monospace has-background-grey-darker has-text-white"
             id="splitFile"
             readonly
           ></textarea>
+
           <br />
+
           <button class="button is-danger is-outlined" id="downloadBtn">
             Download
           </button>
