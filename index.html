@@ -16,7 +16,8 @@
       html {
         background-color: hsl(0, 0%, 29%);
       }
-      textarea {
+      textarea,
+      input {
         border: 1px solid hsl(348, 100%, 61%) !important;
       }
     </style>
@@ -28,6 +29,30 @@
           <h1 class="title is-1 has-text-weight-bold has-text-danger">
             splitify
           </h1>
+          <div class="field">
+            <label class="label has-text-white">Game name:</label>
+            <div class="control">
+              <input
+                class="input has-text-white has-background-grey-darker"
+                id="gameName"
+                type="text"
+                placeholder="Enter game name"
+                id="gameName"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-white">Category name:</label>
+            <div class="control">
+              <input
+                class="input has-text-white has-background-grey-darker"
+                id="categoryName"
+                type="text"
+                placeholder="Enter category name"
+                id="categoryName"
+              />
+            </div>
+          </div>
           <p class="has-text-white">
             Enter your split names separated by commas and/or newlines:
           </p>

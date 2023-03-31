@@ -1,8 +1,7 @@
-const generateSegments = (splitNames) => {
-  const gameName = 'Game Name';
-  const categoryName = 'Category Name';
-  const usesEmulatorTrueFalse = 'False';
-  const attemptCount = 0;
+const usesEmulatorTrueFalse = 'False';
+const attemptCount = 0;
+
+const generateSegments = (splitNames, gameName, categoryName) => {
   const splitTemplate = (splitName) => `
         <Segment>
             <Name>${splitName}</Name>
@@ -56,7 +55,14 @@ const generateSplitFile = () => {
   const splitNames = splitNamesInput.value
       .split(/[,|\n]/)
       .map((name) => name.trim());
-  const splitFile = generateSegments(splitNames);
+
+  const gameNameInput = document.getElementById('gameName');
+  const gameName = gameNameInput.value;
+
+  const categoryNameInput = document.getElementById('categoryName');
+  const categoryName = categoryNameInput.value;
+
+  const splitFile = generateSegments(splitNames, gameName, categoryName);
   const formattedSplitFile = formatXml(splitFile);
   const splitFileOutput = document.getElementById('splitFile');
   splitFileOutput.value = formattedSplitFile;
