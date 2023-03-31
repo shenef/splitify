@@ -4,35 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css" />
     <title>splitify</title>
     <style>
-      #splitNames,
-      #splitFile {
-        display: block;
-        overflow-y: auto;
-        resize: none;
-        max-width: 600px;
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
+      #splitNames {
+        height: 100px;
       }
       #splitFile {
-        height: calc(100vh - 300px);
-        min-height: 100px;
+        height: 300px;
+      }
+      html {
+        background-color: hsl(0, 0%, 29%);
+      }
+      textarea {
+        border: 1px solid hsl(348, 100%, 61%) !important;
       }
     </style>
   </head>
   <body>
-    <h1>splitify</h1>
-    <p>Enter your split names separated by commas and/or newlines:</p>
-    <textarea id="splitNames"></textarea>
-    <br />
-    <button onclick="generateSplitFile()">Generate Split File</button>
-    <br /><br />
-    <textarea id="splitFile" readonly></textarea>
-    <br />
-    <button id="downloadBtn">Download</button>
-
+    <section class="section container">
+      <div class="columns content">
+        <div class="column is-two-thirds-fullhd">
+          <h1 class="title is-1 has-text-weight-bold has-text-danger">
+            splitify
+          </h1>
+          <p class="has-text-white">
+            Enter your split names separated by commas and/or newlines:
+          </p>
+          <textarea
+            class="textarea is-family-monospace has-background-grey-darker has-text-white"
+            placeholder="e.g. World 1, World 2"
+            id="splitNames"
+          ></textarea>
+          <br />
+          <button
+            class="button is-danger is-outlined"
+            onclick="generateSplitFile()"
+          >
+            Generate file
+          </button>
+          <br /><br />
+          <textarea
+            class="textarea is-family-monospace has-background-grey-darker has-text-white"
+            id="splitFile"
+            readonly
+          ></textarea>
+          <br />
+          <button class="button is-danger is-outlined" id="downloadBtn">
+            Download
+          </button>
+        </div>
+      </div>
+    </section>
     <script src="index.js"></script>
   </body>
 </html>

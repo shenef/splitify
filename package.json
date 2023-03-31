@@ -3,5 +3,8 @@
     "eslint": "^8.7.0",
     "eslint-config-google": "^0.14.0",
     "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "bulma": "^0.9.4"
   }
 }
