@@ -16,6 +16,11 @@ const generateSegments = (splitNames, gameName, categoryName) => {
   const splitNamesArray = Array.isArray(splitNames) ?
     splitNames :
     splitNames.split(/[\n,]/);
+
+  if (splitNames == '' || gameName == '' || categoryName == '') {
+    return 'Game, category and split names are required!';
+  }
+
   const segments = splitNamesArray
       .filter((name) => name.trim() !== '')
       .map((name) => splitTemplate(name.trim()))
