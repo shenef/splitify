@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,42 +28,51 @@
       content="Splitify simplifies making splits for your speedgames by generating the split file from a comma and/or newline separated list."
     />
     <meta name="twitter:creator" content="@shenef0x1" />
-    <meta
-      name="twitter:image"
-      content="https://splitify.shenef.one/icon.webp"
-    />
+    <meta name="twitter:image" content="https://splitify.shenef.one/icon.webp" />
     <meta name="theme-color" content="#FF3860" />
     <link rel="icon" type="image/webp" sizes="128x128" href="icon.webp" />
     <link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css" />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans&display=swap");
+
+      :root {
+        --bulma-danger-s: 80%;
+        --bulma-danger-l: 55%;
+      }
 
       * {
-        font-family: 'Fira Sans', sans-serif !important;
+        font-family: "Fira Sans", sans-serif !important;
       }
-      .is-family-monospace {
-        font-family: 'Fira Code', sans-serif !important;
+
+      .is-family-code {
+        font-family: "Fira Code", monospace !important;
       }
+
       #splitNames {
-        height: 100px;
+        height: 90px;
       }
+
       #splitFile {
-        height: 300px;
+        height: 230px;
         white-space: pre;
       }
+
       html {
-        background-color: hsl(0, 0%, 29%);
+        background-color: var(--bulma-grey-dark);
       }
+
       textarea,
       input {
-        border: 1px solid hsl(348, 100%, 61%) !important;
+        border: 1px solid var(--bulma-danger) !important;
       }
+
       ::placeholder {
-        color: white !important;
-        opacity: 0.2;
+        color: var(--bulma-white) !important;
+        opacity: 0.25;
       }
+
       a {
-        color: hsl(348, 100%, 61%);
+        color: var(--bulma-danger);
       }
     </style>
   </head>
@@ -71,15 +80,13 @@
     <section class="section container">
       <div class="columns content">
         <div class="column container">
-          <h1 class="title is-1 has-text-weight-bold has-text-danger">
-            splitify
-          </h1>
+          <h1 class="title is-1 has-text-danger">splitify</h1>
 
           <h6 class="subtitle is-6 has-text-white">simplify making splits</h6>
 
-          <div class="field">
-            <label class="label has-text-white">Game</label>
-            <div class="control">
+          <label class="label has-text-white">Game & Category</label>
+          <div class="field has-addons">
+            <div class="control is-expanded">
               <input
                 class="input has-text-white has-background-grey-darker"
                 id="gameName"
@@ -87,11 +94,7 @@
                 placeholder="Boktai: The Sun is in Your Hand"
               />
             </div>
-          </div>
-
-          <div class="field">
-            <label class="label has-text-white">Category</label>
-            <div class="control">
+            <div class="control is-expanded">
               <input
                 class="input has-text-white has-background-grey-darker"
                 id="categoryName"
@@ -105,45 +108,39 @@
             <label class="label has-text-white">Splits</label>
             <div class="control">
               <textarea
-                class="textarea is-family-monospace has-background-grey-darker has-text-white"
+                class="textarea has-text-white has-background-grey-darker"
                 placeholder="Fog Castle, Small Cave, Gate of the Dead, Ancient Forest, ..."
                 id="splitNames"
               ></textarea>
-              <p class="help is-danger">
-                List must be separated by commas and/or newlines.
-              </p>
+              <p class="help is-danger">List must be separated by commas and/or newlines.</p>
             </div>
           </div>
 
-          <br />
-
-          <button
-            class="button is-danger is-outlined"
-            onclick="generateSplitFile()"
-          >
+          <button class="button is-danger is-outlined" onclick="generateSplitFile()">
             Generate file content
           </button>
 
-          <br /><br />
+          <br /><br /><br />
 
+          <label class="label has-text-white">File content</label>
           <textarea
-            class="textarea is-family-monospace has-background-grey-darker has-text-white"
+            class="textarea is-family-code has-background-grey-darker has-text-white"
+            placeholder="empty &mdash; for now"
             id="splitFile"
             readonly
           ></textarea>
 
           <br />
 
-          <button class="button is-danger is-outlined" id="downloadBtn">
-            Download file
-          </button>
+          <button class="button is-danger is-outlined" id="downloadBtn">Download file</button>
         </div>
       </div>
     </section>
     <div class="content has-text-white has-text-centered">
       <p>
         Contribute on
-        <a href="https://github.com/shenef/splitify" target="_blank">GitHub</a>
+        <a href="https://github.com/shenef/splitify" target="_blank">GitHub</a> or report bugs to
+        @shenef on Discord.
       </p>
     </div>
     <script src="index.js"></script>
